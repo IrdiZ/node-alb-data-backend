@@ -73,8 +73,25 @@ async function synchronizeDBwithDS() {
         console.log("Error inserting data:", err);
       }
     } else {
+      //TODO new DB column del_flag to ensure when items get deleted by DS they are kept on our DB
+
       //TODO add synch logic, that accounts for
-      // new data, updated data, removed data, add del flag
+      // new data, updated data, removed data, add del flag to that entry
+
+      //Pseudocode
+
+      //Check for updates first
+      //Get each id from DS, compare DS date with DB date of entry
+      // if date of DS on same-id entry is newer then update entry on DB
+
+      //Check for inserts then
+      //Get each id from DS, if i cant find it in DB, then its a new entry
+      //Add it
+
+      //Take ids of my DataBase, say from [36-127] so 91 items
+      //check if these ids exist within DS, if not theyve been deleted.
+      //Mark them with the deleted flag
+
       console.log("Synchronising...");
     }
   } catch (err) {
