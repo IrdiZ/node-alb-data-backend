@@ -1,7 +1,7 @@
 const https = require("https");
 
 // So i dont need cookie now?
-// wtf, ok?
+// wtf
 
 /**
  * Retrieves full response based on provided filter array asynchronously.

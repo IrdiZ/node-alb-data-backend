@@ -139,6 +139,16 @@ clientConnection()
     });
 
     // Flatten the array of promises
+
+    // pakashum logjika e decoupling kto db dependencies qe kishin kto objektet se ishin nested me njera tjetren
+    // kemi me clear dhe i kemi kto deps. ne nje array per te bere promise.all se ndryshe me array of arrays se bejme dot
+    // gjithashtu promise.all na ndhimon shum se i bje t gjithave concurrently, but not parallel
+
+    // psh si e kam bo break down esh A: maindataitem, B: servicedatalistitem, C: servicecategorydatalistitem
+    // A -> B, A -> C, C -> B // ku X -> Y, Y eshte nested brenda X // duhet bere note qe kto "links" between ketyre
+    // ishin veten ne formen e nesting, jo me ndonje key ose id, gje qe e bente te veshtire ti lidhje bashke kur ben
+    // procese asinkrone edhe rradha prishet, jo si ne programim procedurial, fatmiresisht keto kishin nje A.title === B.name (mdkt)
+
     const flattenedCategoryPromises = categoryPromises.flat();
 
     return Promise.all(flattenedCategoryPromises).then(() => {
